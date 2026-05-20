@@ -1,10 +1,12 @@
 extends Area3D
 
 @export var tp_point_name: String
-func _on_body_entered(body):
-	if body.name == "Player":
-		body.current_station = self
 
-func _on_body_exited(body):
-	if body.name == "Player" and body.current_station == self:
-		body.current_station = null
+func _on_area_exited(area):
+	if area.name == "Player" and area.current_station == self:
+		area.current_station = null
+
+
+func _on_area_entered(area: Area3D) -> void:
+	if area.name == "Player":
+		area.current_station = self

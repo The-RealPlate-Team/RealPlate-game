@@ -25,6 +25,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_area_entered(area: Area3D) -> void:
+	pass # Replace with function body.
+
+
+func _on_storage_unit_area_exited(area: Area3D) -> void:
+	pass # Replace with function body.
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tt6b"]
@@ -783,7 +791,7 @@ material = SubResource("StandardMaterial3D_nnm0d")
 transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
 shape = SubResource("BoxShape3D_kse2w")
 
-[node name="StorageUnit" type="Area3D" parent="Stations" unique_id=1862393790]
+[node name="StorageUnit" type="Area3D" parent="Stations" unique_id=19086617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -8)
 script = ExtResource("8_4ocg4")
 
@@ -1067,6 +1075,10 @@ metadata/_edit_lock_ = true
 transform = Transform3D(10, 0, 0, 0, 1.9861614e-07, 10, 0, -10, 1.9861614e-07, 0, -0.06959057, 8.532197e-09)
 visibility_parent = NodePath("../../../Environment/Ceiling")
 
+[connection signal="area_entered" from="Stations/PracticeKitchen" to="Stations/PracticeKitchen" method="_on_area_entered"]
+[connection signal="area_exited" from="Stations/PracticeKitchen" to="Stations/PracticeKitchen" method="_on_area_exited"]
+[connection signal="area_entered" from="Stations/StorageUnit" to="Stations/StorageUnit" method="_on_area_entered"]
+[connection signal="area_exited" from="Stations/StorageUnit" to="Stations/StorageUnit" method="_on_area_exited"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
