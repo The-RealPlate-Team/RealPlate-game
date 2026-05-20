@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bb5ureml3ryt4"]
+
+[node name="HQ Rooms" type="Node3D" unique_id=680030252]
+
+[node name="Practice Kitchen" type="Node3D" parent="." unique_id=886800344]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Practice Kitchen" unique_id=712130400]
+size = Vector3(200, 5, 200)
+
+[node name="Storage Unit" type="Node3D" parent="." unique_id=1886338243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 300)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Storage Unit" unique_id=1571720297]
+size = Vector3(200, 5, 200)
+
+[node name="Office" type="Node3D" parent="." unique_id=711412223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -300)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Office" unique_id=1553702740]
+size = Vector3(200, 5, 200)
+
+[node name="Hall of Fame" type="Node3D" parent="." unique_id=28011581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 600)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Hall of Fame" unique_id=1760643456]
+size = Vector3(200, 5, 200)
+
+[node name="Franchise Office" type="Node3D" parent="." unique_id=586867422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Franchise Office" unique_id=251328707]
+size = Vector3(200, 5, 200)

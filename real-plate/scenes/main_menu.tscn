@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://q54ukpa06ys6"]
+
+[ext_resource type="Script" uid="uid://c2n3aucwo26b7" path="res://scripts/main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://ddncfyxr53lsk" path="res://assets/visual/RealPlatelogoremovebg.png" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://x1420anmsyom" path="res://scripts/play_button_(button).gd" id="2_rtw2f"]
+[ext_resource type="Script" uid="uid://lggt880yon63" path="res://scripts/settings_button_(button).gd" id="3_oa1go"]
+[ext_resource type="Script" uid="uid://bp0om2n1doygf" path="res://scripts/quit_button_(button).gd" id="4_tbmy8"]
+
+[node name="MainMenu" type="Control" unique_id=1776707057]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="PlayButton" type="Button" parent="." unique_id=1005498733]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 213.0
+offset_right = 412.0
+offset_bottom = 244.0
+focus_neighbor_bottom = NodePath("../SettingsButton")
+text = "Play"
+script = ExtResource("2_rtw2f")
+
+[node name="SettingsButton" type="Button" parent="." unique_id=1945403326]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 255.0
+offset_right = 412.0
+offset_bottom = 286.0
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+text = "⚙️ Settings"
+script = ExtResource("3_oa1go")
+
+[node name="QuitButton" type="Button" parent="." unique_id=1181277581]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 295.0
+offset_right = 412.0
+offset_bottom = 326.0
+focus_neighbor_top = NodePath("../SettingsButton")
+text = "Quit"
+script = ExtResource("4_tbmy8")
+
+[node name="Title (Label)" type="Label" parent="." unique_id=938592006]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 78.0
+offset_right = 412.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 48
+text = "RealPlate"
+horizontal_alignment = 2
+
+[node name="RealPlatelogoremovebg" type="Sprite2D" parent="." unique_id=2112802157]
+position = Vector2(95, 110)
+scale = Vector2(0.16538864, 0.16538864)
+texture = ExtResource("2_ekxnf")
+
+[node name="CharacterEdit DevOnly" type="Button" parent="." unique_id=2147381189]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "DEV ONLY - Character Customization"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CharacterEdit DevOnly" to="." method="_on_char_edit_pressed"]

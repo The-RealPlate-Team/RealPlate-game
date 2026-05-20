@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cgfm3y3wxsc1n"]
+
+[ext_resource type="Script" uid="uid://d1aeshk8pugog" path="res://scripts/PlayerController.gd" id="1_rwgxs"]
+[ext_resource type="Script" uid="uid://c1vd5pg4bc60p" path="res://scripts/pause_menu.gd" id="2_4wyf3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f3sb7"]
+radius = 0.35
+height = 1.75
+
+[node name="World" type="Node3D" unique_id=2061883717]
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=595646431]
+script = ExtResource("1_rwgxs")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1011097726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=644775603]
+shape = SubResource("CapsuleShape3D_f3sb7")
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1216313321]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_4wyf3")
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu" unique_id=454633934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer" unique_id=1981705889]
+layout_mode = 2
+
+[node name="PausedLabel" type="Label" parent="PauseMenu/CenterContainer/VBoxContainer" unique_id=2137439420]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer" unique_id=773488193]
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer" unique_id=173275913]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer" unique_id=1240495980]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]

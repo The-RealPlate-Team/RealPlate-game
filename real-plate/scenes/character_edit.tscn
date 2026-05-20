@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://bx0h6p5h7flat"]
+
+[node name="Control" type="Control" unique_id=419450638]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=589911338]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 40.0
+current_tab = 0
+
+[node name="Hair" type="Control" parent="TabContainer" unique_id=735206056]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ItemList" type="ItemList" parent="TabContainer/Hair" unique_id=382735725]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+auto_width = true
+auto_height = true
+tile_scroll_hint = true
+item_count = 2
+max_columns = 5
+icon_mode = 0
+item_0/text = "No Hair (Bald)"
+item_1/text = "Spiky Hair 1"
+
+[node name="Body" type="Control" parent="TabContainer" unique_id=1562412975]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ItemList2" type="ItemList" parent="TabContainer/Body" unique_id=1505853147]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 40.0
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+auto_width = true
+auto_height = true
+tile_scroll_hint = true
+max_columns = 5
+icon_mode = 0
+
+[node name="Hands" type="Control" parent="TabContainer" unique_id=2056018917]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ItemList3" type="ItemList" parent="TabContainer/Hands" unique_id=1344204299]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 40.0
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+auto_width = true
+auto_height = true
+tile_scroll_hint = true
+max_columns = 5
+icon_mode = 0
+
+[node name="Head Accesories" type="Control" parent="TabContainer" unique_id=247165758]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ItemList4" type="ItemList" parent="TabContainer/Head Accesories" unique_id=502643743]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 216.0
+offset_bottom = 71.0
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+auto_width = true
+auto_height = true
+tile_scroll_hint = true
+max_columns = 5
+icon_mode = 0
+
+[node name="Body Accesories" type="Control" parent="TabContainer" unique_id=231147911]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="ItemList5" type="ItemList" parent="TabContainer/Body Accesories" unique_id=182413973]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 216.0
+offset_bottom = 71.0
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+auto_width = true
+auto_height = true
+tile_scroll_hint = true
+max_columns = 5
+icon_mode = 0
+
+[node name="Hands Accesories" type="Control" parent="TabContainer" unique_id=1897688928]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="ItemList6" type="ItemList" parent="TabContainer/Hands Accesories" unique_id=750153760]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 40.0
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+auto_width = true
+auto_height = true
+tile_scroll_hint = true
+max_columns = 5
+icon_mode = 0

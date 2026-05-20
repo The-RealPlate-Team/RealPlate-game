@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ctkm8t7b1xju0"]
+
+[ext_resource type="PackedScene" uid="uid://bsdm7v52ufn3g" path="res://scenes/Spotlight.gltf" id="1_wjevx"]
+[ext_resource type="Script" uid="uid://d1aeshk8pugog" path="res://scripts/PlayerController.gd" id="2_267t8"]
+[ext_resource type="Script" uid="uid://cnm7rtggjvhdc" path="res://scripts/player_camera_3d.gd" id="3_7wlnd"]
+[ext_resource type="ArrayMesh" uid="uid://cceabc0d5y1r7" path="res://assets/player/Basic Character/Basic Player.obj" id="4_2jij8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iunic"]
+radius = 0.35
+height = 1.75
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gassx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xcijp"]
+radius = 0.13
+
+[node name="Templates" type="Node3D" unique_id=1291064091]
+
+[node name="OmniLight3D13" type="OmniLight3D" parent="." unique_id=1991674500]
+transform = Transform3D(1, 0, 0, 0, -1, 1.5099582e-07, 0, -1.5099582e-07, -1, 9.178078, 3.7818537, 7.263816)
+metadata/_edit_lock_ = true
+
+[node name="Root" parent="OmniLight3D13" unique_id=866884754 instance=ExtResource("1_wjevx")]
+transform = Transform3D(10, 0, 0, 0, 1.9861614e-07, 10, 0, -10, 1.9861614e-07, 0, -0.06959057, 8.532197e-09)
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1425004136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+script = ExtResource("2_267t8")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=714155538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2535377, -0.12660027)
+fov = 37.849285
+script = ExtResource("3_7wlnd")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Camera3D" unique_id=10278074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008803844, 0.6483097)
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1613625010]
+shape = SubResource("CapsuleShape3D_iunic")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player" unique_id=234630950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04261005, 1.2174671, 0.049666405)
+shape = SubResource("SphereShape3D_gassx")
+
+[node name="CollisionShape3DHand" type="CollisionShape3D" parent="Player" unique_id=383574589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34006196, 0.15787113, -0.5793114)
+shape = SubResource("SphereShape3D_xcijp")
+
+[node name="CollisionShape3DHand2" type="CollisionShape3D" parent="Player" unique_id=728917878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22201985, 0.15787113, -0.5793114)
+shape = SubResource("SphereShape3D_xcijp")
+
+[node name="BasicPlayer" type="MeshInstance3D" parent="Player" unique_id=1582625673]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -0.0318802, -0.4033159, 0.050967216)
+mesh = ExtResource("4_2jij8")
