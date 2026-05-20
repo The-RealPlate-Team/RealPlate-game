@@ -7,6 +7,8 @@ extends CharacterBody3D
 var mouse_sensitivity := 0.003
 var controller_sensitivity := 2.0
 var vertical_limit := 85.0
+var current_station = null
+
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
@@ -76,7 +78,11 @@ func _input(event):
 		rotation.y -= event.relative.x * mouse_sensitivity
 		cam_fp.rotate_x(-event.relative.y * mouse_sensitivity)
 		cam_fp.rotation_degrees.x = clamp(cam_fp.rotation_degrees.x, -vertical_limit, vertical_limit)
-
+	
+	if event.is_action_pressed("interact"):
+		if current_station !=null:
+			GameState.next_tp_point_name = current_station.tp_point_name
+			get_tree().change_scene_to_file("res://scenes/hq_rooms.tscn")
 
 func switch_camera():
 	is_first_person = !is_first_person
