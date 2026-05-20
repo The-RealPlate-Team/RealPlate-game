@@ -805,6 +805,10 @@ use_collision = true
 size = Vector3(3, 3.5, 3)
 material = SubResource("StandardMaterial3D_0t4ue")
 
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Stations/Office" unique_id=1259521526]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0.15416813, 0.36180377, 0.054153204)
+shape = SubResource("BoxShape3D_kse2w")
+
 [node name="HallOfFame" type="Area3D" parent="Stations" unique_id=633798156]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.25, 0)
 script = ExtResource("10_nau05")
@@ -814,6 +818,10 @@ use_collision = true
 size = Vector3(4, 3.5, 0.3)
 material = SubResource("StandardMaterial3D_ip382")
 
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Stations/HallOfFame" unique_id=1276513073]
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, -0.17072296, 0.11180377, -0.3055066)
+shape = SubResource("BoxShape3D_kse2w")
+
 [node name="FranchiseOffice" type="Area3D" parent="Stations" unique_id=1355090868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.25, 3)
 script = ExtResource("11_57l1r")
@@ -822,6 +830,10 @@ script = ExtResource("11_57l1r")
 use_collision = true
 size = Vector3(3, 3.5, 2)
 material = SubResource("StandardMaterial3D_pamn4")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Stations/FranchiseOffice" unique_id=1839890357]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 400, 0.010068893, 0.11180377, -0.0379014)
+shape = SubResource("BoxShape3D_kse2w")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1569830697]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
