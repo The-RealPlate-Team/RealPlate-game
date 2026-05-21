@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jxtapc2mphvw"
-path="res://.godot/imported/RealPlate.180x180.png-7c9ad6be3349742121b58f96619bdd43.ctex"
+uid="uid://dte64endk7x7y"
+path="res://.godot/imported/RealPlate.icon.png-48e060e4f01817cd575e204b0a3a66d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Playtest Apps/Web/RealPlate.180x180.png"
-dest_files=["res://.godot/imported/RealPlate.180x180.png-7c9ad6be3349742121b58f96619bdd43.ctex"]
+source_file="res://Playtest-Apps/Web/RealPlate.icon.png"
+dest_files=["res://.godot/imported/RealPlate.icon.png-48e060e4f01817cd575e204b0a3a66d4.ctex"]
 
 [params]
 
