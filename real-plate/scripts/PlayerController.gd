@@ -21,6 +21,8 @@ func _ready():
 	cam_fp.current = true
 	cam_tp.current = false
 	_update_light_models_visibility()
+	print("cam_fp.curent = " + str(cam_fp.current))
+	print("cam_tp.current = " + str(cam_tp.current))
 
 
 func _physics_process(delta: float) -> void:

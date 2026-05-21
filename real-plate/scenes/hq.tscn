@@ -76,6 +76,8 @@ albedo_color = Color(0.27450982, 0.50980395, 0.7058824, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip382"]
 albedo_color = Color(0.85490197, 0.64705884, 0.1254902, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ywln"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pamn4"]
 albedo_color = Color(0.18431373, 0.30980393, 0.30980393, 1)
 
@@ -818,30 +820,32 @@ transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0.15416813, 0.36180377,
 shape = SubResource("BoxShape3D_kse2w")
 
 [node name="HallOfFame" type="Area3D" parent="Stations" unique_id=633798156]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.25, 0)
+transform = Transform3D(-5.68248e-07, 0, 13, 0, 13, 0, -13, 0, -5.68248e-07, 11.961841, 0.9234574, -0.78150743)
 script = ExtResource("10_nau05")
-
-[node name="HallOfFame2" type="CSGBox3D" parent="Stations/HallOfFame" unique_id=838238711]
-use_collision = true
-size = Vector3(4, 3.5, 0.3)
-material = SubResource("StandardMaterial3D_ip382")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Stations/HallOfFame" unique_id=1276513073]
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, -0.17072296, 0.11180377, -0.3055066)
 shape = SubResource("BoxShape3D_kse2w")
 
-[node name="FranchiseOffice" type="Area3D" parent="Stations" unique_id=1355090868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.25, 3)
-script = ExtResource("11_57l1r")
-
-[node name="FranchiseOffice2" type="CSGBox3D" parent="Stations/FranchiseOffice" unique_id=955749430]
+[node name="HallOfFame2" type="CSGBox3D" parent="Stations/HallOfFame" unique_id=838238711]
+transform = Transform3D(-3.3624143e-09, 0, -0.07692307, 0, 0.07692307, 0, 0.07692307, 0, -3.3624143e-09, -0.060115945, 0.025118664, -0.1509108)
 use_collision = true
-size = Vector3(3, 3.5, 2)
-material = SubResource("StandardMaterial3D_pamn4")
+size = Vector3(4, 3.5, 0.3)
+material = SubResource("StandardMaterial3D_ip382")
+
+[node name="FranchiseOffice" type="Area3D" parent="Stations" unique_id=1355090868]
+transform = Transform3D(4.371139e-06, -6.6002363e-13, 100, -1.509958e-05, -100, 0, 100, -1.509958e-05, -4.371139e-06, 11.009731, 3.0640967, 2.6378126)
+script = ExtResource("11_57l1r")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Stations/FranchiseOffice" unique_id=1839890357]
 transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 400, 0.010068893, 0.11180377, -0.0379014)
-shape = SubResource("BoxShape3D_kse2w")
+shape = SubResource("BoxShape3D_7ywln")
+
+[node name="FranchiseOffice2" type="CSGBox3D" parent="Stations/FranchiseOffice" unique_id=955749430]
+transform = Transform3D(4.371139e-10, -1.509958e-09, 0.01, -6.600236e-17, -0.01, -1.509958e-09, 0.01, 0, -4.371139e-10, 0.0036218762, 0.018140964, -0.020097315)
+use_collision = true
+size = Vector3(3, 3.5, 2)
+material = SubResource("StandardMaterial3D_pamn4")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1569830697]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
@@ -1077,14 +1081,24 @@ visibility_parent = NodePath("../../../Environment/Ceiling")
 
 [connection signal="area_entered" from="Stations/PracticeKitchen" to="Stations/PracticeKitchen" method="_on_area_entered"]
 [connection signal="area_exited" from="Stations/PracticeKitchen" to="Stations/PracticeKitchen" method="_on_area_exited"]
+[connection signal="body_entered" from="Stations/PracticeKitchen" to="Stations/PracticeKitchen" method="_on_body_entered"]
+[connection signal="body_exited" from="Stations/PracticeKitchen" to="Stations/PracticeKitchen" method="_on_body_exited"]
 [connection signal="area_entered" from="Stations/StorageUnit" to="Stations/StorageUnit" method="_on_area_entered"]
 [connection signal="area_exited" from="Stations/StorageUnit" to="Stations/StorageUnit" method="_on_area_exited"]
+[connection signal="body_entered" from="Stations/StorageUnit" to="Stations/StorageUnit" method="_on_body_entered"]
+[connection signal="body_exited" from="Stations/StorageUnit" to="Stations/StorageUnit" method="_on_body_exited"]
 [connection signal="area_entered" from="Stations/Office" to="Stations/Office" method="_on_area_entered"]
 [connection signal="area_exited" from="Stations/Office" to="Stations/Office" method="_on_area_exited"]
+[connection signal="body_entered" from="Stations/Office" to="Stations/Office" method="_on_body_entered"]
+[connection signal="body_exited" from="Stations/Office" to="Stations/Office" method="_on_body_exited"]
 [connection signal="area_entered" from="Stations/HallOfFame" to="Stations/HallOfFame" method="_on_area_entered"]
 [connection signal="area_exited" from="Stations/HallOfFame" to="Stations/HallOfFame" method="_on_area_exited"]
+[connection signal="body_entered" from="Stations/HallOfFame" to="Stations/HallOfFame" method="_on_body_entered"]
+[connection signal="body_exited" from="Stations/HallOfFame" to="Stations/HallOfFame" method="_on_body_exited"]
 [connection signal="area_entered" from="Stations/FranchiseOffice" to="Stations/FranchiseOffice" method="_on_area_entered"]
 [connection signal="area_exited" from="Stations/FranchiseOffice" to="Stations/FranchiseOffice" method="_on_area_exited"]
+[connection signal="body_entered" from="Stations/FranchiseOffice" to="Stations/FranchiseOffice" method="_on_body_entered"]
+[connection signal="body_exited" from="Stations/FranchiseOffice" to="Stations/FranchiseOffice" method="_on_body_exited"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
