@@ -7,6 +7,6 @@ func _on_body_exited(body):
 		body.current_station = null
 
 
-func _on_body_entered(body: Area3D) -> void:
-	if body.name == "Player":
-		body.current_station = self
+#func _on_body_entered(body: Area3D) -> void:
+#	if body.name == "Player":
+#		body.current_station = self

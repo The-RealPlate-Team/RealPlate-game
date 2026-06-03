@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://x1420anmsyom" path="res://scripts/play_button_(button).gd" id="2_rtw2f"]
 [ext_resource type="Script" uid="uid://lggt880yon63" path="res://scripts/settings_button_(button).gd" id="3_oa1go"]
 [ext_resource type="Script" uid="uid://bp0om2n1doygf" path="res://scripts/quit_button_(button).gd" id="4_tbmy8"]
+[ext_resource type="AudioStream" uid="uid://b3rl8retj6y5u" path="res://assets/audio/music/RealPlate_Main_Menu1.mp3" id="6_rtw2f"]
+[ext_resource type="Script" uid="uid://b0fb5tt28s8v2" path="res://scripts/streamer_mode.gd" id="7_oa1go"]
 
 [node name="MainMenu" type="Control" unique_id=1776707057]
 layout_mode = 3
@@ -66,6 +68,26 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "DEV ONLY - Character Customization"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1854941153]
+stream = ExtResource("6_rtw2f")
+volume_db = -20.0
+autoplay = true
+mix_target = 1
+
+[node name="StreamerMode" type="CheckButton" parent="." unique_id=1643986762]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 2.0
+offset_right = 1155.0
+offset_bottom = 33.0
+text = "Streamer Mode"
+script = ExtResource("7_oa1go")
+
+[node name="StreamerInfo" type="Label" parent="." unique_id=2109518792]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

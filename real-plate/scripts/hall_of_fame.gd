@@ -9,6 +9,6 @@ func _on_body_entered(body) -> void:
 
 
 
-func _on_body_exited(body) -> void:
-	if body.name == "Player" and body.current_station == self:
-		body.current_station = null
+#func _on_body_exited(body) -> void:
+#	if body.name == "Player" and body.current_station == self:
+#		body.current_station = null

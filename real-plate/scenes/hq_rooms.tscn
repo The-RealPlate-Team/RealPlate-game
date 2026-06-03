@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://bb5ureml3ryt4"]
 
-[ext_resource type="Script" uid="uid://buds3r16jbtby" path="res://scripts/hq_rooms.gd" id="1_jff4i"]
 [ext_resource type="Script" uid="uid://c1vd5pg4bc60p" path="res://scripts/pause_menu.gd" id="2_ao2aj"]
 [ext_resource type="Script" uid="uid://d1aeshk8pugog" path="res://scripts/PlayerController.gd" id="3_mjwll"]
-[ext_resource type="Script" uid="uid://cnm7rtggjvhdc" path="res://scripts/player_camera_3d.gd" id="4_wiomp"]
+[ext_resource type="Script" uid="uid://cnm7rtggjvhdc" path="res://scripts/player_camera_3d.gd" id="3_oo5y6"]
 [ext_resource type="ArrayMesh" uid="uid://cceabc0d5y1r7" path="res://assets/player/Basic Character/Basic Player.obj" id="5_no6k1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jff4i"]
@@ -18,7 +17,6 @@ height = 1.75
 radius = 0.13
 
 [node name="HQ Rooms" type="Node3D" unique_id=680030252]
-script = ExtResource("1_jff4i")
 
 [node name="Practice Kitchen" type="Node3D" parent="." unique_id=886800344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -128,7 +126,7 @@ script = ExtResource("3_mjwll")
 [node name="Player_1st_Person" type="Camera3D" parent="Player" unique_id=1775952291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1749315, -0.27618504)
 fov = 37.849285
-script = ExtResource("4_wiomp")
+script = ExtResource("3_oo5y6")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player/Player_1st_Person" unique_id=1312770854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008803844, 0.16313362)
@@ -159,12 +157,12 @@ mesh = ExtResource("5_no6k1")
 transform = Transform3D(-1, 8.742278e-08, 0, 3.821371e-15, 4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, -0.47733974, 34.527637, -0.061790466)
 cull_mask = 524287
 fov = 35.0
-script = ExtResource("4_wiomp")
+script = ExtResource("3_oo5y6")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player_3rd_Person" unique_id=1683024270]
 spot_range = 20.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=401805811]
+[node name="Lights" type="OmniLight3D" parent="." unique_id=401805811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.433189, 0)
 light_energy = 16.0
 light_size = 1.0
