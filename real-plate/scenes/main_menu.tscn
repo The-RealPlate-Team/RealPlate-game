@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bp0om2n1doygf" path="res://scripts/quit_button_(button).gd" id="4_tbmy8"]
 [ext_resource type="AudioStream" uid="uid://b3rl8retj6y5u" path="res://assets/audio/music/RealPlate_Main_Menu1.mp3" id="6_rtw2f"]
 [ext_resource type="Script" uid="uid://b0fb5tt28s8v2" path="res://scripts/streamer_mode.gd" id="7_oa1go"]
+[ext_resource type="Texture2D" uid="uid://b6571m3uai2uo" path="res://assets/visual/making-the-game.png" id="8_tbmy8"]
 
 [node name="MainMenu" type="Control" unique_id=1776707057]
 layout_mode = 3
@@ -88,6 +89,19 @@ script = ExtResource("7_oa1go")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="MakingTheGame" type="Sprite2D" parent="." unique_id=2088108835]
+position = Vector2(27.75003, 627.5)
+scale = Vector2(0.094569206, 0.09176026)
+texture = ExtResource("8_tbmy8")
+
+[node name="Label" type="Label" parent="MakingTheGame" unique_id=1848593301]
+offset_left = 245.85141
+offset_top = -59.938965
+offset_right = 788.43616
+offset_bottom = 168.91846
+theme_override_font_sizes/font_size = 79
+text = "RealPlate is currently WIP (Work In Progress)"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
