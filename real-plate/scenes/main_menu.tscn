@@ -100,7 +100,7 @@ offset_left = 245.85141
 offset_top = -59.938965
 offset_right = 788.43616
 offset_bottom = 168.91846
-theme_override_font_sizes/font_size = 102
+theme_override_font_sizes/font_size = 105
 text = "RealPlate is currently WIP (Work In Progress)"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
