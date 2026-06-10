@@ -1,0 +1,38 @@
+name: RealPlate CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot
+        uses: firebelley/setup-godot@v2
+        with:
+          version: "4.2.2"
+          mono: false
+
+      - name: Print Godot version
+        run: godot --version
+
+      - name: Run GDScript Linter
+        run: |
+          godot --headless --check RealPlate
+
+      - name: Export Game
+        run: |
+          mkdir -p build
+          godot --headless --export-release "Linux/X11" build/RealPlate.x86_64
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RealPlate-Build
+          path: build/
