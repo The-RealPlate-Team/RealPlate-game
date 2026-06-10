@@ -1,0 +1,164 @@
+name: RealPlate Unified Branch Manager
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get today's date
+        id: date
+        run: |
+          echo "today=$(date +"%m/%d/%Y")" >> $GITHUB_OUTPUT
+          echo "today_rev=$(date +"%d/%m/%Y")" >> $GITHUB_OUTPUT
+
+      - name: Detect if this is an official version tag push
+        id: tagcheck
+        run: |
+          REF="${GITHUB_REF}"
+          if [[ "$REF" == refs/tags/v*.*.* ]]; then
+            echo "official=true" >> $GITHUB_OUTPUT
+          else
+            echo "official=false" >> $GITHUB_OUTPUT
+          fi
+
+      ###########################################################################
+      # OFFICIAL VERSION HANDLING (Triggered by pushing a tag via GitHub Desktop)
+      ###########################################################################
+
+      - name: Extract version from tag
+        if: steps.tagcheck.outputs.official == 'true'
+        id: version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          echo "version=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Create official release branch
+        if: steps.tagcheck.outputs.official == 'true'
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if git show-ref --verify --quiet "refs/heads/$VERSION"; then
+            echo "Official branch already exists."
+          else
+            git checkout -b "$VERSION"
+            git push origin "$VERSION"
+          fi
+
+      - name: Stop workflow after official release
+        if: steps.tagcheck.outputs.official == 'true'
+        run: echo "Official version processed. No further actions."
+
+      ###########################################################################
+      # DAILY BRANCH HANDLING (Triggered by normal pushes)
+      ###########################################################################
+
+      - name: Get latest official version tag
+        if: steps.tagcheck.outputs.official == 'false'
+        id: official
+        run: |
+          TAG=$(git tag --sort=-v:refname | head -n 1)
+          if [ -z "$TAG" ]; then
+            TAG="v0.0.1"
+          fi
+          echo "version=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Ignore official release branches
+        if: steps.tagcheck.outputs.official == 'false'
+        id: ignore
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          if [[ "$BRANCH" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "ignore=true" >> $GITHUB_OUTPUT
+          else
+            echo "ignore=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if pushing to official branch
+        if: steps.ignore.outputs.ignore == 'true'
+        run: echo "Official branch detected. No routing performed."
+
+      - name: Detect if branch contains today's date
+        if: steps.ignore.outputs.ignore == 'false'
+        id: detect
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          TODAY="${{ steps.date.outputs.today }}"
+          if [[ "$BRANCH" == *"$TODAY"* ]]; then
+            echo "match=true" >> $GITHUB_OUTPUT
+          else
+            echo "match=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if branch matches today's date
+        if: steps.detect.outputs.match == 'true'
+        run: echo "Branch matches today's date. Push allowed."
+
+      - name: Find latest daily branch for this version
+        if: steps.detect.outputs.match == 'false'
+        id: latest
+        run: |
+          VERSION="${{ steps.official.outputs.version }}"
+          BRANCHES=$(git branch -r | sed 's/origin\///' | grep -E "^${VERSION}[a-z]+-")
+
+          if [ -z "$BRANCHES" ]; then
+            echo "suffix=a" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          LAST=$(echo "$BRANCHES" | sort | tail -n 1)
+          SUFFIX=$(echo "$LAST" | sed -E "s/^${VERSION}([a-z]+).*/\1/")
+
+          # Pure Bash suffix incrementer
+          increment_suffix() {
+            local s="$1"
+            local alphabet=({a..z})
+            local len=${#s}
+            local i=$((len - 1))
+
+            while [ $i -ge 0 ]; do
+              local char="${s:$i:1}"
+              if [ "$char" != "z" ]; then
+                local idx
+                for j in "${!alphabet[@]}"; do
+                  if [[ "${alphabet[$j]}" == "$char" ]]; then idx=$j; break; fi
+                done
+                local next="${alphabet[$((idx + 1))]}"
+                echo "${s:0:$i}$next$(printf 'a%.0s' $(seq 1 $((len - i - 1))))"
+                return
+              fi
+              i=$((i - 1))
+            done
+
+            printf 'a%.0s' $(seq 1 $((len + 1)))
+          }
+
+          NEWSUFFIX=$(increment_suffix "$SUFFIX")
+          echo "suffix=$NEWSUFFIX" >> $GITHUB_OUTPUT
+
+      - name: Create new branch name
+        if: steps.detect.outputs.match == 'false'
+        id: newbranch
+        run: |
+          VERSION="${{ steps.official.outputs.version }}"
+          SUFFIX="${{ steps.latest.outputs.suffix }}"
+          DATE="${{ steps.date.outputs.today_rev }}"
+          echo "branch=${VERSION}${SUFFIX}-${DATE}" >> $GITHUB_OUTPUT
+
+      - name: Create and push new branch
+        if: steps.detect.outputs.match == 'false'
+        run: |
+          NEWBRANCH="${{ steps.newbranch.outputs.branch }}"
+          git checkout -b "$NEWBRANCH"
+          git push origin "$NEWBRANCH" --force
+          echo "Moved push to $NEWBRANCH"
