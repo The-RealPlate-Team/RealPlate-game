@@ -725,8 +725,9 @@ size = Vector3(6.592484, 1, 19.984863)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -2)
 
 [node name="OpportunityBoard2" type="CSGBox3D" parent="Stations/OpportunityBoard" unique_id=2076460639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24951172, 0)
 use_collision = true
-size = Vector3(3, 3.5, 0.3)
+size = Vector3(3, 3.0009766, 0.3)
 material = SubResource("StandardMaterial3D_otg5c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/OpportunityBoard" unique_id=1171259681]
