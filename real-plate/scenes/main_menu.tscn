@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://q54ukpa06ys6"]
 
+[ext_resource type="Texture2D" uid="uid://ddncfyxr53lsk" path="res://assets/visual/RealPlatelogoremovebg.png" id="1_wu84c"]
 [ext_resource type="AudioStream" uid="uid://b3rl8retj6y5u" path="res://assets/audio/music/RealPlate_Main_Menu1.mp3" id="6_rtw2f"]
 [ext_resource type="Script" uid="uid://b0fb5tt28s8v2" path="res://scripts/streamer_mode.gd" id="7_oa1go"]
 [ext_resource type="Texture2D" uid="uid://b6571m3uai2uo" path="res://assets/visual/making-the-game.png" id="8_tbmy8"]
@@ -53,6 +54,7 @@ horizontal_alignment = 2
 [node name="RealPlatelogoremovebg" type="Sprite2D" parent="." unique_id=2112802157]
 position = Vector2(95, 110)
 scale = Vector2(0.16538864, 0.16538864)
+texture = ExtResource("1_wu84c")
 
 [node name="CharacterEdit DevOnly" type="Button" parent="." unique_id=2147381189]
 layout_mode = 0
